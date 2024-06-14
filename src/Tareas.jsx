@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react"
-import Formulario from "./Formulario"
-import Tarea from "./Tarea"
+import { useState, useEffect } from 'react'
+import Formulario from './Formulario'
+import Tarea from './Tarea'
 
 function Tareas(){
 
     let [tareas,setTareas] = useState([])
 
     useEffect(() => {
-        fetch("https://api-todo-mongo-3j66.onrender.com/tareas")
+        fetch("https://api-todo-mongo.onrender.com/tareas")
         .then(respuesta => respuesta.json())
         .then(tareas => setTareas(tareas))
     }, [])
@@ -17,7 +17,7 @@ function Tareas(){
     }
 
     function toggleEstado(id){
-        setTareas(tareas.map(tarea => {
+        setTareas(tareas.map( tarea => {
             if(tarea.id == id){
                 tarea.terminada = !tarea.terminada
             }
@@ -26,7 +26,7 @@ function Tareas(){
     }
 
     function editarTexto(id,texto){
-        setTareas(tareas.map(tarea => {
+        setTareas(tareas.map( tarea => {
             if(tarea.id == id){
                 tarea.tarea = texto
             }
@@ -35,27 +35,24 @@ function Tareas(){
     }
 
     function borrarTarea(id){
-        setTareas(tareas.filter(tarea => tarea.id != id))
+        setTareas(tareas.filter( tarea => tarea.id != id))
     }
 
-
-
-    return(
-        <>
+    return (
+            <>
             <Formulario crearTarea={crearTarea} />
             <section className="tareas">
-                { tareas.map(({id,tarea,terminada}) => <Tarea 
+                { tareas.map( ({id,tarea,terminada}) => <Tarea 
                                                             key={id} 
                                                             id={id} 
                                                             tarea={tarea} 
                                                             terminada={terminada}
                                                             editarTexto={editarTexto}
                                                             toggleEstado={toggleEstado}
-                                                            borrarTarea={borrarTarea}
-                                                            />) }
+                                                            borrarTarea={borrarTarea} />) }  
             </section>
-        </>
-    )
+            </>
+            )
 }
 
 export default Tareas
