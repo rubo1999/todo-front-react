@@ -6,16 +6,27 @@ function Formulario({crearTarea}){
 
     return (
         <>
-            <form onSubmit={evento => {
+            <form onSubmit={async evento => {
                 evento.preventDefault()
 
                 if(textoTemporal.trim() != ""){
-                    crearTarea({
-                        id:2,
-                        tarea: textoTemporal.trim(),
-                        terminada:false
-                    })
-                    setTextoTemporal("")
+                    let {error} = await fetch("http://localhost:4000/tareas/nueva", {
+                        method : "POST",
+                        body: JSON.stringify({tarea : textoTemporal.trim()}),
+                        headers : {
+                            "Content-type" : "application/json"
+                        }
+                    }).then(respuesta => respuesta.json())
+
+                    if(!error){
+                        crearTarea({
+                            id : Math.random(),
+                            tarea : textoTemporal.trim(),
+                            terminada : false
+                        })
+                        return setTextoTemporal("");
+                    }
+                    console.log("error a usuario");
                 }
             }}>
                 <input 
