@@ -7,7 +7,7 @@ function Tareas(){
     let [tareas,setTareas] = useState([])
 
     useEffect(() => {
-        fetch("https://api-todo-mongo.onrender.com/tareas")
+        fetch("https://api-todo-mongo-3j66.onrender.com/tareas")
         .then(respuesta => respuesta.json())
         .then(tareas => setTareas(tareas))
     }, [])

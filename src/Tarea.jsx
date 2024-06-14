@@ -15,7 +15,7 @@ function Tarea({id,tarea,terminada,editarTexto,toggleEstado,borrarTarea}){
                 <button className="boton" onClick={ async () => {
                     if(editando){
                         if(textoTemporal.trim() != "" && textoTemporal.trim() != tarea){
-                            let {error} = await fetch(`https://api-todo-mongo.onrender.com/tareas/actualizar/${id}/1`,{
+                            let {error} = await fetch(`https://api-todo-mongo-3j66.onrender.com/tareas/actualizar/${id}/1`,{
                                 method : "PUT",
                                 body : JSON.stringify({ tarea : textoTemporal.trim() }),
                                 headers : {
@@ -39,7 +39,7 @@ function Tarea({id,tarea,terminada,editarTexto,toggleEstado,borrarTarea}){
                     }
                 } }>{ editando ? "guardar" : "editar" }</button>
                 <button className="boton" onClick={ () => {
-                    fetch(`https://api-todo-mongo.onrender.com/tareas/borrar/${id}`,{
+                    fetch(`https://api-todo-mongo-3j66.onrender.com/tareas/borrar/${id}`,{
                         method : "DELETE"
                     })
                     .then(respuesta => respuesta.json())
@@ -53,7 +53,7 @@ function Tarea({id,tarea,terminada,editarTexto,toggleEstado,borrarTarea}){
                 <button 
                     className={ `estado ${ terminada ? "terminada" : "" }` }
                     onClick={ () => {
-                        fetch(`https://api-todo-mongo.onrender.com/tareas/actualizar/${id}/2`,{
+                        fetch(`https://api-todo-mongo-3j66.onrender.com/tareas/actualizar/${id}/2`,{
                             method : "PUT"
                         })
                         .then(respuesta => respuesta.json())
