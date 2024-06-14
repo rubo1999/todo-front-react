@@ -20,7 +20,7 @@ function Formulario({crearTarea}){
 
                     if(!error){
                         crearTarea({
-                            id : Math.random(),
+                            id,
                             tarea : textoTemporal.trim(),
                             terminada : false
                         })
