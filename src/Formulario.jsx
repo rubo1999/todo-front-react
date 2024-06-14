@@ -10,7 +10,7 @@ function Formulario({crearTarea}){
 
                 if(textoTemporal.trim() != ""){
 
-                    let {id,error} = await fetch("https://api-todo-mongo-3j66.onrender.com/tareas/tareas/nueva",{
+                    let {id,error} = await fetch("https://api-todo-mongo-3j66.onrender.com/tareas/nueva",{
                         method : "POST",
                         body : JSON.stringify({tarea : textoTemporal.trim() }),
                         headers : {
